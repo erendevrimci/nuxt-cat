@@ -193,6 +193,7 @@
 
 <script setup lang="ts">
 import { ref, onMounted } from 'vue'
+import type { PageMeta } from '@nuxt/types'
 import { useAuthStore } from '../stores/auth'
 import { useRouter } from 'vue-router'
 
