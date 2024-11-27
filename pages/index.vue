@@ -176,7 +176,7 @@
                 class="flex-1 px-6 py-2 text-white rounded-lg transition-all duration-500 text-sm relative overflow-hidden button-click"
               >
                 <span class="relative z-10 opacity-0 animate-fade-in-slow">Copy Credentials</span>
-                <div class="absolute inset-0 bg-gradient-to-r from-blue-600 via-purple-600 to-blue-600"></div>
+                <div class="absolute inset-0 bg-gradient-to-r from-blue-600 via-purple-600 to-blue-600 transition-colors duration-500"></div>
               </button>
               
               <button 
@@ -328,8 +328,10 @@ definePageMeta({
 
 .button-click {
   &:active {
-    filter: saturate(0);
-    transition: filter 2s ease-out;
+    .absolute {
+      background: #374151 !important; /* gray-700 */
+      transition: background 2s ease-out;
+    }
   }
 }
 
