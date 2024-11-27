@@ -23,5 +23,11 @@ export default defineNuxtConfig({
       '/api/cats': { proxy: 'https://api.thecatapi.com/v1/images/search' }
     }
   },
-  compatibilityDate: '2024-11-27'
+  compatibilityDate: '2024-11-27',
+  postcss: {
+    plugins: {
+      tailwindcss: {},
+      autoprefixer: {},
+    }
+  }
 })
