@@ -1,6 +1,23 @@
 <template>
-  <div class="min-h-screen flex items-center justify-center bg-gradient-to-br from-gray-50 to-gray-100 p-4">
-    <div class="w-full max-w-sm perspective">
+  <div class="min-h-screen flex items-center justify-center bg-white p-4">
+    <!-- Welcome Section -->
+    <div v-if="!showAuthCard" class="text-center space-y-6">
+      <h1 class="text-4xl font-light text-gray-800">Welcome to Kitty Randomizer</h1>
+      <p class="text-gray-600">Your daily dose of cat cuteness!</p>
+      <button 
+        @click="showAuthCard = true"
+        class="relative px-8 py-3 text-sm font-medium text-gray-800 border border-gray-300 rounded-lg 
+               hover:border-transparent transition-all duration-300 overflow-hidden group"
+      >
+        <span class="relative z-10">Sign In to Start</span>
+        <div class="absolute inset-0 -z-0 bg-gradient-to-r from-purple-300 via-pink-300 to-purple-300 
+                    opacity-0 group-hover:opacity-100 transition-opacity duration-300 
+                    animate-gradient-x"></div>
+      </button>
+    </div>
+
+    <!-- Auth Card -->
+    <div v-else class="w-full max-w-sm perspective">
       <div 
         class="relative w-full transition-transform duration-700 transform-style-3d"
         :class="{ 'rotate-y-180': authStore.isSignUpMode }"
@@ -32,7 +49,7 @@
               />
             </div>
 
-            <div v-if="authStore.authError" 
+            <div v-if="authStore.authError && !authStore.isSignUpMode" 
                  class="text-red-500 text-sm p-3 bg-red-50 rounded-lg border border-red-100">
               {{ authStore.authError }}
             </div>
@@ -46,12 +63,16 @@
           </form>
 
           <div class="mt-6 text-center">
-            <button 
-              @click="authStore.toggleAuthMode()" 
-              class="text-gray-600 hover:text-gray-800 text-xs font-medium transition-colors"
-            >
-              Need an account? Sign up
-            </button>
+            <p class="text-sm text-gray-600">
+              Need an account? 
+              <button 
+                @click="authStore.toggleAuthMode()" 
+                class="text-purple-600 hover:text-purple-800 font-medium transition-all duration-300
+                       hover:glow-purple-sm"
+              >
+                Sign up
+              </button>
+            </p>
           </div>
 
           <!-- Decorative elements -->
@@ -124,6 +145,7 @@ import { useRouter } from 'vue-router'
 
 const username = ref('')
 const password = ref('')
+const showAuthCard = ref(false)
 const authStore = useAuthStore()
 const router = useRouter()
 
@@ -169,5 +191,19 @@ definePageMeta({
 
 .rotate-y-180 {
   transform: rotateY(180deg);
+}
+
+@keyframes gradient-x {
+  0%, 100% { background-position: 0% 50%; }
+  50% { background-position: 100% 50%; }
+}
+
+.animate-gradient-x {
+  animation: gradient-x 3s linear infinite;
+  background-size: 200% 100%;
+}
+
+.hover\:glow-purple-sm:hover {
+  filter: drop-shadow(0 0 0.5rem theme('colors.purple.300'));
 }
 </style>
