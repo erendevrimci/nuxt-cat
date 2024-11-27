@@ -91,9 +91,11 @@
               <button 
                 @click="authStore.toggleAuthMode()" 
                 class="text-purple-600 hover:text-purple-800 font-medium transition-all duration-300
-                       hover:glow-purple-sm"
+                       hover:glow-purple-sm relative group inline-block"
               >
                 Sign up
+                <span class="absolute bottom-0 left-0 w-full h-0.5 bg-purple-600 scale-x-0 
+                           group-hover:scale-x-100 transition-transform origin-left duration-300"></span>
               </button>
             </p>
           </div>
