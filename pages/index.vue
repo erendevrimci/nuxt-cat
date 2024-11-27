@@ -68,11 +68,10 @@
 
             <button 
               type="submit" 
-              class="w-full relative py-2 rounded-lg text-sm font-medium overflow-hidden group magical-button"
-              :class="{ 'dissolving': isDissolving }"
+              class="w-full relative py-2 rounded-lg text-sm font-medium overflow-hidden group"
             >
               <span class="relative z-10 text-white">
-                Time for Some Kitty Magic! 🎩✨
+                {{ authStore.isSignUpMode ? 'Sign Up' : 'Time for Some Kitty Magic! 🎩✨' }}
               </span>
               <div class="absolute inset-0 bg-black"></div>
               <div class="absolute inset-0 opacity-0 group-hover:opacity-100 transition-opacity duration-300">
@@ -181,17 +180,11 @@
               </button>
               
               <button 
-                @click="() => {
-                  const creds = authStore.toggleAuthMode()
-                  if (creds) {
-                    username.value = creds.username
-                    password.value = creds.password
-                  }
-                }" 
+                @click="authStore.toggleAuthMode()" 
                 class="flex-1 px-6 py-2 bg-gray-50 text-blue-600 rounded-lg hover:bg-gray-100 transition-all duration-200 text-sm
                        hover:glow-blue-sm"
               >   
-                <p class="text-sm text-gray-600"> Flip back to</p>
+            <p class="text-sm text-gray-600"> Flip back to</p>
                 Sign In
               </button>
             </div>
@@ -211,24 +204,15 @@ import { ref } from 'vue'
 import { useAuthStore } from '~/stores/auth'
 import { useRouter } from 'vue-router'
 
-const username = ref('demo')
-const password = ref('Demo123!')
+const username = ref('')
+const password = ref('')
 const showAuthCard = ref(false)
-const isDissolving = ref(false)
 const authStore = useAuthStore()
 const router = useRouter()
 
-const copyToClipboard = async (text: string, type: 'username' | 'password' | 'both' = 'both') => {
+const copyToClipboard = async (text: string) => {
   try {
     await navigator.clipboard.writeText(text)
-    if (type === 'username') {
-      authStore.$patch({ copiedCredentials: { ...authStore.copiedCredentials, username: text } })
-    } else if (type === 'password') {
-      authStore.$patch({ copiedCredentials: { ...authStore.copiedCredentials, password: text } })
-    } else {
-      const [username, password] = text.split('\n')
-      authStore.$patch({ copiedCredentials: { username, password } })
-    }
   } catch (err) {
     console.error('Failed to copy:', err)
   }
@@ -236,23 +220,27 @@ const copyToClipboard = async (text: string, type: 'username' | 'password' | 'bo
 
 const handleSubmit = async () => {
   try {
-    isDissolving.value = true
-    const success = await authStore.login(username.value, password.value)
-    if (success) {
-      // Wait for dissolution animation
-      await new Promise(resolve => setTimeout(resolve, 1000))
-      router.push('/dashboard')
+    if (authStore.isSignUpMode) {
+      const result = await authStore.signup(username.value, password.value)
+      if (result && typeof result === 'object' && !result.preventRedirect) {
+        username.value = result.username
+        password.value = result.password
+      }
+    } else {
+      const success = await authStore.login(username.value, password.value)
+      if (success) {
+        router.push('/cats')
+      }
     }
   } catch (e) {
     console.error('Auth error:', e)
-    isDissolving.value = false
   }
 }
 
 // Redirect if already logged in
 onMounted(() => {
   if (authStore.isAuthenticated) {
-    router.push('/dashboard')
+    router.push('/cats')
   }
 })
 
@@ -263,24 +251,6 @@ definePageMeta({
 </script>
 
 <style scoped>
-@keyframes dissolve {
-  0% {
-    transform: scale(1);
-    opacity: 1;
-  }
-  50% {
-    transform: scale(1.5);
-    opacity: 0.5;
-  }
-  100% {
-    transform: scale(2);
-    opacity: 0;
-  }
-}
-
-.magical-button.dissolving {
-  animation: dissolve 1s ease-out forwards;
-}
 @keyframes typewriter {
   from { width: 0; }
   to { width: 100%; }
