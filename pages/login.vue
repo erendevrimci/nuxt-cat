@@ -145,9 +145,10 @@
 </template>
 
 <script setup lang="ts">
-import { ref } from 'vue'
-import { useAuthStore } from '~/stores/auth'
+import { ref, onMounted } from 'vue'
+import { useAuthStore } from '../stores/auth'
 import { useRouter } from 'vue-router'
+import { definePageMeta } from '#imports'
 
 const username = ref('')
 const password = ref('')
