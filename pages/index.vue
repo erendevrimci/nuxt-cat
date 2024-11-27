@@ -270,13 +270,14 @@ definePageMeta({
 
 .fast-typewriter {
   animation: 
-    typewriter 0.7s steps(40, end);
+    typewriter 0.7s steps(30, end);
+    
 }
 
 /* Only apply fadeOut to the first message during signup */
 .typewriter:not(.fast-typewriter) {
   animation: 
-    typewriter 2s steps(40, end),
+    typewriter 2s steps(40),
     fadeOut 1s ease-out 3s forwards;
 }
 .perspective {
