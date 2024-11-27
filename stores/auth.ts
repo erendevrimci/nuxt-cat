@@ -75,6 +75,5 @@ export const useAuthStore = defineStore<string, AuthState, {}, AuthActions>('aut
       }
       return null
     }
-  },
-  persist: true
+  }
 })
