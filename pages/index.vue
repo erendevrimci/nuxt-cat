@@ -111,7 +111,7 @@
           :class="{ 'invisible': !authStore.isSignUpMode }"
         >
           <h2 class="text-2xl font-semibold text-gray-800 text-center mb-4">
-            Sign Up
+            Hear'em, Purrring already!
           </h2>
           
           <form @submit.prevent="handleSubmit" class="space-y-4">
@@ -180,7 +180,8 @@
                 @click="authStore.toggleAuthMode()" 
                 class="flex-1 px-6 py-2 bg-gray-50 text-blue-600 rounded-lg hover:bg-gray-100 transition-all duration-200 text-sm
                        hover:glow-blue-sm"
-              >
+              >   
+            <p class="text-sm text-gray-600"> Flip back to </p>
                 Sign In
               </button>
             </div>
