@@ -277,7 +277,7 @@ definePageMeta({
 .typewriter:not(.fast-typewriter) {
   animation: 
     typewriter 2s steps(40, end),
-    fadeOut 1s ease-out 5s forwards;
+    fadeOut 1s ease-out 3s forwards;
 }
 .perspective {
   perspective: 1000px;
