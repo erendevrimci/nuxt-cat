@@ -15,6 +15,16 @@ export const useAuthStore = defineStore('auth', {
     copiedCredentials: { username: 'demo', password: 'Demo123!' }
   }),
   actions: {
+    toggleAuthMode() {
+      this.isSignUpMode = !this.isSignUpMode
+      this.authError = null
+      
+      // If flipping back to sign in and we have copied credentials, keep them
+      if (!this.isSignUpMode && this.copiedCredentials.username) {
+        return this.copiedCredentials
+      }
+      return null
+    },
     async login(username: string, password: string) {
       const authRepository = new AuthRepository()
       this.authError = null
