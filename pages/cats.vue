@@ -13,7 +13,7 @@
         </svg>
       </button>
     </div>
-    <div class="flex items-center justify-center p-4 min-h-screen">
+    <div class="flex items-center justify-center p-4 min-h-screen"></div>
     <div class="w-full max-w-md bg-white shadow-2xl rounded-2xl p-8 space-y-6 border border-blue-100">
       <div class="text-center">
         <h1 class="text-3xl font-extrabold text-blue-900 mb-4">Kitty Randomizer</h1>
@@ -57,7 +57,7 @@
 </template>
 
 <script setup lang="ts">
-import { useRouter, definePageMeta } from '#imports'
+import { useRouter, definePageMeta } from 'nuxt/app'
 import { useAuth } from '../composables/useAuth'
 import { useCatStore } from '../stores/cat'
 
