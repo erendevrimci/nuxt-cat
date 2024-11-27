@@ -9,16 +9,15 @@ export default defineNuxtConfig({
     }
   },
   modules: [
-    '@nuxtjs/tailwindcss',
+    ['@nuxtjs/tailwindcss', {
+      configPath: '~/tailwind.config.ts'
+    }],
     ['@pinia/nuxt', {
       autoImports: ['defineStore', 'storeToRefs']
     }]
   ],
   imports: {
     dirs: ['./stores']
-  },
-  tailwindcss: {
-    configPath: '~/tailwind.config.ts'
   },
   runtimeConfig: {
     public: {
