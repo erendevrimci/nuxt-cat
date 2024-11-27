@@ -190,10 +190,10 @@
             </div>
           </form>
 
-          <!-- Decorative elements -->
-          <div class="decorative-shape shape-1"></div>
-          <div class="decorative-shape shape-2"></div>
-          <div class="decorative-shape shape-3"></div>
+          <!-- Modern gradient mesh background -->
+          <div class="absolute inset-0 -z-10 overflow-hidden rounded-xl">
+            <div class="mesh-gradient"></div>
+          </div>
         </div>
       </div>
     </div>
@@ -403,65 +403,28 @@ definePageMeta({
   animation-delay: 1.6s;
 }
 
-/* Decorative shapes */
-.decorative-shape {
+/* Modern gradient mesh background */
+.mesh-gradient {
   position: absolute;
-  top: 0;
-  left: 0;
-  width: 1rem;
-  height: 1rem;
-  opacity: 0.5;
-  animation: moveAround 35s linear infinite, morphShape 9s ease-in-out infinite;
+  inset: -50%;
+  width: 200%;
+  height: 200%;
+  background: radial-gradient(circle at 50% 50%, 
+    rgba(147, 197, 253, 0.15),
+    rgba(196, 181, 253, 0.15),
+    rgba(167, 139, 250, 0.15),
+    rgba(139, 92, 246, 0.15)
+  );
+  animation: rotate 20s linear infinite;
+  filter: blur(24px);
 }
 
-.shape-1 {
-  background: linear-gradient(45deg, #93c5fd, #818cf8);
-  animation-delay: 0s, 0s;
-  clip-path: circle(100%);
-}
-
-.shape-2 {
-  background: linear-gradient(45deg, #c084fc, #f472b6);
-  animation-delay: -6.67s, -2.67s;
-  clip-path: circle(100% at 50% 50%);
-}
-
-.shape-3 {
-  background: linear-gradient(45deg, #34d399, #60a5fa);
-  animation-delay: -13.33s, -5.33s;
-  clip-path: circle(50% at 50% 50%);
-}
-
-@keyframes moveAround {
-  0% {
-    transform: translate(calc(-50%), calc(-50% + 150px)) rotate(0deg);
+@keyframes rotate {
+  from {
+    transform: rotate(0deg);
   }
-  25% {
-    transform: translate(calc(-50%), calc(-50% + 150px)) rotate(90deg);
-  }
-  50% {
-    transform: translate(calc(-50%), calc(-50% - 150px)) rotate(180deg);
-  }
-  75% {
-    transform: translate(calc(-50%), calc(-50% - 150px)) rotate(270deg);
-  }
-  100% {
-    transform: translate(calc(-50%), calc(-50% + 150px)) rotate(360deg);
-  }
-}
-
-@keyframes morphShape {
-  0%, 100% {
-    clip-path: circle(50% at 50% 50%);
-  }
-  25% {
-    clip-path: polygon(50% 0%, 100% 50%, 50% 100%, 0% 50%);
-  }
-  50% {
-    clip-path: polygon(25% 0%, 75% 0%, 100% 50%, 75% 100%, 25% 100%, 0% 50%);
-  }
-  75% {
-    clip-path: polygon(50% 0%, 100% 38%, 82% 100%, 18% 100%, 0% 38%);
+  to {
+    transform: rotate(360deg);
   }
 }
 </style>
