@@ -57,6 +57,10 @@
 </template>
 
 <script setup lang="ts">
+import { useRouter } from 'vue-router'
+import { useAuth } from '~/composables/useAuth'
+import { useCatStore } from '~/stores/cat'
+
 definePageMeta({
   middleware: ['auth']
 })
