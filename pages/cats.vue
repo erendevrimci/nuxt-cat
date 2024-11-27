@@ -43,6 +43,10 @@
 </template>
 
 <script setup lang="ts">
+definePageMeta({
+  middleware: ['auth']
+})
+
 const catStore = useCatStore()
 
 const fetchCat = async () => {

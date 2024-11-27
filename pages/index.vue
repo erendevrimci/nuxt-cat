@@ -34,7 +34,14 @@
 </template>
 
 <script setup lang="ts">
-// Authentication logic will be added here
+const { isAuthenticated, user } = useAuthStore()
+
+// Redirect to cats if already authenticated
+watchEffect(() => {
+  if (isAuthenticated) {
+    navigateTo('/cats')
+  }
+})
 </script>
 
 <style scoped>
