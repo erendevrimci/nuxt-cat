@@ -222,7 +222,7 @@ const handleSubmit = async () => {
   try {
     if (authStore.isSignUpMode) {
       const result = await authStore.signup(username.value, password.value)
-      if (result && typeof result === 'object') {
+      if (result && typeof result === 'object' && !result.preventRedirect) {
         username.value = result.username
         password.value = result.password
       }
