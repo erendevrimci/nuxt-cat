@@ -202,6 +202,9 @@ const router = useRouter()
 const copyToClipboard = async (text: string) => {
   try {
     await navigator.clipboard.writeText(text)
+    // Fill in the sign in credentials
+    username.value = 'demo'
+    password.value = 'Demo123!'
   } catch (err) {
     console.error('Failed to copy:', err)
   }
