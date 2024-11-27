@@ -1,7 +1,5 @@
 // stores/auth.ts
 import { defineStore } from 'pinia'
-
-import { defineStore } from 'pinia'
 import { AuthRepository } from '~/repositories/auth'
 
 export const useAuthStore = defineStore('auth', {
@@ -38,7 +36,5 @@ export const useAuthStore = defineStore('auth', {
       this.loginError = null
     }
   },
-  persist: {
-    storage: persistedState.localStorage
-  }
+  persist: true
 })
