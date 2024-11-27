@@ -111,6 +111,7 @@
           <!-- Decorative elements -->
           <div class="absolute top-0 right-0 w-20 h-20 bg-blue-100 rounded-full -mr-10 -mt-10 opacity-50"></div>
           <div class="absolute bottom-0 left-0 w-16 h-16 bg-indigo-100 rounded-full -ml-8 -mb-8 opacity-50"></div>
+        </div>
       </div>
     </div>
   </div>
