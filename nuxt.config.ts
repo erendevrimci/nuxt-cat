@@ -22,5 +22,6 @@ export default defineNuxtConfig({
     routeRules: {
       '/api/cats': { proxy: 'https://api.thecatapi.com/v1/images/search' }
     }
-  }
+  },
+  compatibilityDate: '2024-11-27'
 })

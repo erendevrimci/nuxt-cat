@@ -10,7 +10,8 @@ export const useCatStore = defineStore('cat', {
     async fetchCatImage() {
       this.loading = true
       try {
-        const { data } = await useNuxtApp().$axios.get('/api/cats')
+        const { $axios } = useNuxtApp()
+        const { data } = await $axios.get('/api/cats')
         this.currentCatImage = data[0].url
       } catch (error) {
         console.error('Failed to fetch cat image:', error)
