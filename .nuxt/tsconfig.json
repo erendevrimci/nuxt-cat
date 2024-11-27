@@ -84,8 +84,7 @@
         "./*"
       ],
       "#app": [
-        "../node_modules/nuxt/dist/app",
-        "../node_modules/nuxt/dist/app/*"
+        "../node_modules/nuxt/dist/app"
       ],
       "#app/*": [
         "../node_modules/nuxt/dist/app/*"
@@ -103,7 +102,7 @@
         "./imports"
       ],
       "#app-manifest": [
-        "./manifest/meta/dev.json"
+        "./manifest/meta/dev"
       ],
       "#components": [
         "./components"

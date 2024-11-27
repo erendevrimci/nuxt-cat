@@ -174,13 +174,6 @@ const handleSubmit = async () => {
   }
 }
 
-// Redirect if already logged in
-onMounted(() => {
-  if (authStore.isAuthenticated) {
-    router.push('/cats')
-  }
-})
-
 // Prevent authenticated users from accessing login page
 </script>
 
