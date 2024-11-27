@@ -1,14 +1,11 @@
 export class AuthRepository {
     async login(username: string, password: string) {
-      // Simulate login API call with more robust validation
+      // Simulate login API call with demo credentials
       return new Promise<{ success: boolean }>((resolve, reject) => {
         try {
-          // More complex validation
           const isValid = 
-            username.length >= 3 && 
-            password.length >= 6 && 
-            /[A-Z]/.test(password) && 
-            /[0-9]/.test(password)
+            username === 'demo' && 
+            password === 'Demo123!'
 
           setTimeout(() => {
             resolve({ success: isValid })
