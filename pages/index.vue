@@ -1,23 +1,25 @@
 <template>
   <div class="min-h-screen flex items-center justify-center bg-white p-4 relative">
     <!-- Welcome Section -->
-    <div v-if="!showAuthCard" class="text-center space-y-6">
-      <h1 class="text-4xl font-light text-gray-800">Welcome to KittyMizer</h1>
-      <p class="text-gray-600">Your daily dose of cat cuteness!</p>
+    <div v-if="!showAuthCard" class="text-center space-y-8 fade-slide-up">
+      <h1 class="text-5xl font-extralight text-gray-800 tracking-wide">
+        Welcome to KittyMizer
+      </h1>
+      <p class="text-gray-500 text-lg tracking-wide">Your daily dose of cat cuteness!</p>
       <button 
         @click="showAuthCard = true"
-        class="relative px-8 py-3 text-sm font-medium text-gray-800 border border-gray-300 rounded-lg 
-               hover:border-transparent transition-all duration-300 overflow-hidden group"
+        class="relative px-10 py-3 text-sm font-medium text-gray-700 bg-transparent 
+               hover:text-white transition-all duration-500 overflow-hidden group"
       >
-        <span class="relative z-10">Sign In to Start</span>
-        <div class="absolute inset-0 -z-0 bg-gradient-to-r from-purple-300 via-pink-300 to-purple-300 
-                    opacity-0 group-hover:opacity-100 transition-opacity duration-300 
-                    animate-gradient-x"></div>
+        <span class="relative z-10">Begin the Journey</span>
+        <div class="absolute inset-0 -z-0 bg-gradient-to-r from-purple-400 to-pink-400 
+                    translate-y-full group-hover:translate-y-0 transition-transform 
+                    duration-500 ease-in-out"></div>
       </button>
     </div>
 
     <!-- Auth Card -->
-    <div v-else class="w-full max-w-sm perspective">
+    <div v-else class="w-full max-w-sm perspective fade-scale-in">
       <div 
         class="relative w-full transition-transform duration-700 transform-style-3d"
         :class="{ 'rotate-y-180': authStore.isSignUpMode }"
@@ -302,6 +304,22 @@ definePageMeta({
   }
 }
 
+.fade-slide-up {
+  animation: fadeSlideUp 1.2s cubic-bezier(0.165, 0.84, 0.44, 1) forwards;
+  opacity: 0;
+}
+
+@keyframes fadeSlideUp {
+  0% {
+    opacity: 0;
+    transform: translateY(30px);
+  }
+  100% {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
 @keyframes inkDiffuse {
   0% {
     transform: scale(0.3) translate(0, 0);
@@ -383,6 +401,22 @@ definePageMeta({
   }
   to {
     transform: rotate(360deg);
+  }
+}
+
+.fade-scale-in {
+  animation: fadeScaleIn 0.7s cubic-bezier(0.165, 0.84, 0.44, 1) forwards;
+  opacity: 0;
+}
+
+@keyframes fadeScaleIn {
+  0% {
+    opacity: 0;
+    transform: scale(0.95);
+  }
+  100% {
+    opacity: 1;
+    transform: scale(1);
   }
 }
 </style>
