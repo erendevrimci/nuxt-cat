@@ -51,4 +51,9 @@ onMounted(() => {
     router.push('/dashboard')
   }
 })
+
+// Prevent authenticated users from accessing login page
+definePageMeta({
+  middleware: ['guest']
+})
 </script>
