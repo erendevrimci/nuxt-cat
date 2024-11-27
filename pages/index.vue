@@ -425,19 +425,19 @@ definePageMeta({
 
 @keyframes moveAround {
   0% {
-    transform: translate(calc(-50% + 300px), calc(-50% + 150px)) rotate(0deg);
+    transform: translate(calc(100% - 2rem), -2rem) rotate(0deg);
   }
   25% {
-    transform: translate(calc(-50% - 300px), calc(-50% + 150px)) rotate(90deg);
+    transform: translate(-2rem, -2rem) rotate(90deg);
   }
   50% {
-    transform: translate(calc(-50% - 300px), calc(-50% - 150px)) rotate(180deg);
+    transform: translate(-2rem, calc(100% - 2rem)) rotate(180deg);
   }
   75% {
-    transform: translate(calc(-50% + 300px), calc(-50% - 150px)) rotate(270deg);
+    transform: translate(calc(100% - 2rem), calc(100% - 2rem)) rotate(270deg);
   }
   100% {
-    transform: translate(calc(-50% + 300px), calc(-50% + 150px)) rotate(360deg);
+    transform: translate(calc(100% - 2rem), -2rem) rotate(360deg);
   }
 }
 
