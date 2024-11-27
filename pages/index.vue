@@ -398,7 +398,10 @@ definePageMeta({
 
 /* Decorative shapes */
 .decorative-shape {
-  @apply absolute w-16 h-16 opacity-50;
+  position: absolute;
+  width: 4rem;
+  height: 4rem;
+  opacity: 0.5;
   animation: moveAround 20s linear infinite, morphShape 8s ease-in-out infinite;
 }
 
