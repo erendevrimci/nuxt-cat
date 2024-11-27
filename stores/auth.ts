@@ -10,7 +10,8 @@ export const useAuthStore = defineStore('auth', {
     isSignUpMode: false,
     signUpMessage: '',
     showDemoCredentials: false,
-    hasShownMessage: false
+    hasShownMessage: false,
+    messageState: 'initial' as 'initial' | 'first' | 'second'
   }),
   actions: {
     async login(username: string, password: string) {
@@ -37,15 +38,19 @@ export const useAuthStore = defineStore('auth', {
     async signup(username: string, password: string) {
       this.authError = null
       
-      if (!this.hasShownMessage) {
+      if (this.messageState === 'initial') {
         this.signUpMessage = "Seems like cutie kitties are in need of a quick sign up! 🐱"
+        this.messageState = 'first'
         this.hasShownMessage = true
       }
       
       if (username && password) {
         // When "Done!" is clicked, immediately show second message
         this.showDemoCredentials = true
-        this.signUpMessage = "Oh, forgot to tell you, this is just a test! Please use the credentials below to sign in 😊"
+        if (this.messageState === 'first') {
+          this.signUpMessage = "Oh, forgot to tell you, this is just a test! Please use the credentials below to sign in 😊"
+          this.messageState = 'second'
+        }
         // Replace form values with demo credentials
         return { username: 'demo', password: 'Demo123!' }
       }
