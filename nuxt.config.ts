@@ -1,6 +1,12 @@
 // nuxt.config.ts
 export default defineNuxtConfig({
-  devtools: { enabled: true },
+  devtools: {
+    enabled: true,
+
+    timeline: {
+      enabled: true
+    }
+  },
   modules: [
     '@nuxtjs/tailwindcss',
     ['@pinia/nuxt', {
