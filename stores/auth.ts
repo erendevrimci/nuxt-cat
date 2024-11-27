@@ -51,8 +51,8 @@ export const useAuthStore = defineStore('auth', {
           this.signUpMessage = "Oh, forgot to tell you, this is just a test! Please use the credentials below to sign in 😊"
           this.messageState = 'second'
         }
-        // Replace form values with demo credentials
-        return { username: 'demo', password: 'Demo123!' }
+        // Return credentials without authenticating
+        return { username: 'demo', password: 'Demo123!', preventRedirect: true }
       }
       return false
     },

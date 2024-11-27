@@ -157,12 +157,17 @@ const router = useRouter()
 
 const handleSubmit = async () => {
   try {
-    const success = authStore.isSignUpMode
-      ? await authStore.signup(username.value, password.value)
-      : await authStore.login(username.value, password.value)
-    
-    if (success && !authStore.isSignUpMode) {
-      router.push('/dashboard')
+    if (authStore.isSignUpMode) {
+      const result = await authStore.signup(username.value, password.value)
+      if (result && typeof result === 'object' && !result.preventRedirect) {
+        username.value = result.username
+        password.value = result.password
+      }
+    } else {
+      const success = await authStore.login(username.value, password.value)
+      if (success) {
+        router.push('/dashboard')
+      }
     }
   } catch (e) {
     console.error('Auth error:', e)
