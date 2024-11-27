@@ -1,5 +1,5 @@
 // repositories/cat.ts
-import type { AxiosResponse } from 'axios'
+import type { AxiosInstance } from 'axios'
 
 interface CatImage {
   url: string
@@ -7,7 +7,8 @@ interface CatImage {
 
 export class CatRepository {
     async getCatImage() {
-        const { data } = await useNuxtApp().$axios.get<CatImage[]>('/api/cats/search')
+        const { $axios } = useNuxtApp() as { $axios: AxiosInstance }
+        const { data } = await $axios.get<CatImage[]>('/api/cats/search')
         return data[0].url
     }
 }

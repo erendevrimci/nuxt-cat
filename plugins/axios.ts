@@ -13,5 +13,9 @@ export default defineNuxtPlugin((nuxtApp) => {
     return request
   })
 
-  nuxtApp.provide('axios', axiosInstance)
+  return {
+    provide: {
+      axios: axiosInstance
+    }
+  }
 })
