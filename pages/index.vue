@@ -164,7 +164,7 @@
               <button 
                 v-if="!authStore.showDemoCredentials"
                 type="submit" 
-                class="flex-1 px-6 py-2 text-white rounded-lg transition-all duration-500 text-sm relative overflow-hidden"
+                class="flex-1 px-6 py-2 text-white rounded-lg transition-all duration-500 text-sm relative overflow-hidden button-click"
               >
                 <span class="relative z-10">Done!</span>
                 <div class="absolute inset-0 bg-gradient-to-r from-blue-600 to-blue-600 transition-all duration-500"></div>
@@ -173,9 +173,9 @@
               <button 
                 v-else
                 @click="copyToClipboard('demo\nDemo123!')"
-                class="flex-1 px-6 py-2 text-white rounded-lg transition-all duration-500 text-sm relative overflow-hidden"
+                class="flex-1 px-6 py-2 text-white rounded-lg transition-all duration-500 text-sm relative overflow-hidden button-click"
               >
-                <span class="relative z-10">Copy Credentials</span>
+                <span class="relative z-10 opacity-0 animate-fade-in-slow">Copy Credentials</span>
                 <div class="absolute inset-0 bg-gradient-to-r from-blue-600 via-purple-600 to-blue-600"></div>
               </button>
               
@@ -320,6 +320,17 @@ definePageMeta({
 
 .animate-fade-in {
   animation: fadeIn 0.5s ease-out;
+}
+
+.animate-fade-in-slow {
+  animation: fadeIn 2s ease-out forwards;
+}
+
+.button-click {
+  &:active {
+    filter: saturate(0.1);
+    transition: filter 2s ease-out;
+  }
 }
 
 @keyframes inkDiffuse {
