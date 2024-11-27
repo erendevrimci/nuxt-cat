@@ -75,10 +75,12 @@
               </span>
               <div class="absolute inset-0 bg-black"></div>
               <div class="absolute inset-0 opacity-0 group-hover:opacity-100 transition-opacity duration-300">
-                <div class="absolute inset-0 bg-[radial-gradient(circle,rgba(147,51,234,0.7)_0%,transparent_70%)] 
+                <div class="absolute inset-0 bg-[radial-gradient(circle,rgba(147,51,234,0.8)_0%,transparent_70%)] 
                             animate-ink-diffuse"></div>
-                <div class="absolute inset-0 bg-[radial-gradient(circle,rgba(168,85,247,0.7)_0%,transparent_70%)] 
+                <div class="absolute inset-0 bg-[radial-gradient(circle,rgba(236,72,153,0.7)_0%,transparent_70%)] 
                             animate-ink-diffuse-delayed"></div>
+                <div class="absolute inset-0 bg-[radial-gradient(circle,rgba(99,102,241,0.6)_0%,transparent_70%)] 
+                            animate-ink-diffuse-third"></div>
               </div>
             </button>
           </form>
@@ -303,38 +305,60 @@ definePageMeta({
 
 @keyframes inkDiffuse {
   0% {
-    transform: scale(0.3);
+    transform: scale(0.3) translate(0, 0);
     opacity: 0;
   }
   50% {
-    opacity: 0.6;
+    opacity: 0.8;
+    transform: scale(2) translate(10px, -5px);
   }
   100% {
-    transform: scale(2.5);
+    transform: scale(3) translate(20px, -10px);
     opacity: 0;
   }
 }
 
 @keyframes inkDiffuseDelayed {
   0% {
-    transform: scale(0.3);
+    transform: scale(0.3) translate(0, 0);
+    opacity: 0;
+  }
+  50% {
+    opacity: 0.7;
+    transform: scale(2) translate(-10px, 5px);
+  }
+  100% {
+    transform: scale(3) translate(-20px, 10px);
+    opacity: 0;
+  }
+}
+
+@keyframes inkDiffuseThird {
+  0% {
+    transform: scale(0.3) translate(0, 0);
     opacity: 0;
   }
   50% {
     opacity: 0.6;
+    transform: scale(2) translate(5px, 10px);
   }
   100% {
-    transform: scale(2.5);
+    transform: scale(3) translate(10px, 20px);
     opacity: 0;
   }
 }
 
 .animate-ink-diffuse {
-  animation: inkDiffuse 2s ease-out infinite;
+  animation: inkDiffuse 2.5s ease-out infinite;
 }
 
 .animate-ink-diffuse-delayed {
-  animation: inkDiffuseDelayed 2s ease-out infinite;
-  animation-delay: 1s;
+  animation: inkDiffuseDelayed 2.5s ease-out infinite;
+  animation-delay: 0.8s;
+}
+
+.animate-ink-diffuse-third {
+  animation: inkDiffuseThird 2.5s ease-out infinite;
+  animation-delay: 1.6s;
 }
 </style>
