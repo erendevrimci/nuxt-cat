@@ -162,6 +162,7 @@
 
             <div class="flex space-x-4">
               <button 
+                v-if="!authStore.showDemoCredentials"
                 type="submit" 
                 class="flex-1 px-6 py-2 bg-blue-600 text-white rounded-lg hover:bg-blue-700 transition-all duration-200 text-sm"
               >
@@ -169,9 +170,9 @@
               </button>
               
               <button 
-                v-if="authStore.showDemoCredentials"
+                v-else
                 @click="copyToClipboard('demo\nDemo123!')"
-                class="flex-1 px-6 py-2 bg-gray-100 text-gray-700 rounded-lg hover:bg-gray-200 transition-all duration-200 text-sm"
+                class="flex-1 px-6 py-2 bg-blue-600 text-white rounded-lg hover:bg-blue-700 transition-all duration-200 text-sm"
               >
                 Copy Credentials
               </button>
@@ -180,8 +181,7 @@
                 @click="authStore.toggleAuthMode()" 
                 class="flex-1 px-6 py-2 bg-gray-50 text-blue-600 rounded-lg hover:bg-gray-100 transition-all duration-200 text-sm
                        hover:glow-blue-sm"
-              >   
-            <p class="text-sm text-gray-600"> Flip back to </p>
+              >
                 Sign In
               </button>
             </div>
