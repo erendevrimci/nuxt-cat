@@ -68,9 +68,15 @@
 
             <button 
               type="submit" 
-              class="w-full bg-gray-900 text-white py-2 rounded-lg hover:bg-gray-800 transition-all duration-200 text-sm font-medium"
+              class="w-full relative py-2 rounded-lg text-sm font-medium overflow-hidden group"
             >
-              {{ authStore.isSignUpMode ? 'Sign Up' : 'Sign In' }}
+              <span class="relative z-10 text-white">
+                {{ authStore.isSignUpMode ? 'Sign Up' : 'Ready to Meet Some Purrfect Friends? 🐱' }}
+              </span>
+              <div class="absolute inset-0 bg-gradient-to-r from-violet-600 to-indigo-600"></div>
+              <div class="absolute inset-0 opacity-0 group-hover:opacity-100 transition-opacity duration-700 
+                          bg-[radial-gradient(circle,rgba(104,58,183,0.8)_0%,rgba(104,58,183,0)_70%)] 
+                          animate-ink-diffuse"></div>
             </button>
           </form>
 
@@ -290,5 +296,23 @@ definePageMeta({
 
 .animate-fade-in {
   animation: fadeIn 0.5s ease-out;
+}
+
+@keyframes inkDiffuse {
+  0% {
+    transform: scale(0.95);
+    opacity: 0;
+  }
+  50% {
+    opacity: 0.5;
+  }
+  100% {
+    transform: scale(2);
+    opacity: 0;
+  }
+}
+
+.animate-ink-diffuse {
+  animation: inkDiffuse 1.5s ease-out infinite;
 }
 </style>
