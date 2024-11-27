@@ -166,7 +166,7 @@ const handleSubmit = async () => {
     } else {
       const success = await authStore.login(username.value, password.value)
       if (success) {
-        router.push('/dashboard')
+        router.push('/cats')
       }
     }
   } catch (e) {
@@ -177,7 +177,7 @@ const handleSubmit = async () => {
 // Redirect if already logged in
 onMounted(() => {
   if (authStore.isAuthenticated) {
-    router.push('/dashboard')
+    router.push('/cats')
   }
 })
 
