@@ -103,26 +103,42 @@
           
           <form @submit.prevent="handleSubmit" class="space-y-4">
             <div class="space-y-2">
-              <input 
-                v-model="username" 
-                type="text" 
-                :placeholder="authStore.showDemoCredentials ? 'demo' : 'Username'"
-                required 
-                class="w-full px-4 py-3 border border-gray-200 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 transition-all"
-                :class="{ 'cursor-pointer': authStore.showDemoCredentials }"
-                @click="authStore.showDemoCredentials && copyToClipboard('demo')"
-              />
-              <input 
-                v-model="password" 
-                type="password" 
-                :placeholder="authStore.showDemoCredentials ? 'Demo123!' : 'Password'"
-                required 
-                class="w-full px-4 py-3 border border-gray-200 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 transition-all"
-                :class="{ 'cursor-pointer': authStore.showDemoCredentials }"
-                @click="authStore.showDemoCredentials && copyToClipboard('Demo123!')"
-              />
+              <div class="relative">
+                <input 
+                  v-if="!authStore.showDemoCredentials"
+                  v-model="username" 
+                  type="text" 
+                  placeholder="Username"
+                  required 
+                  class="w-full px-4 py-3 border border-gray-200 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 transition-all"
+                />
+                <div 
+                  v-else
+                  class="w-full px-4 py-3 border border-gray-200 rounded-lg bg-gray-50 text-gray-700 cursor-pointer"
+                  @click="copyToClipboard('demo')"
+                >
+                  demo
+                </div>
+              </div>
+              <div class="relative">
+                <input 
+                  v-if="!authStore.showDemoCredentials"
+                  v-model="password" 
+                  type="password" 
+                  placeholder="Password"
+                  required 
+                  class="w-full px-4 py-3 border border-gray-200 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 transition-all"
+                />
+                <div 
+                  v-else
+                  class="w-full px-4 py-3 border border-gray-200 rounded-lg bg-gray-50 text-gray-700 cursor-pointer"
+                  @click="copyToClipboard('Demo123!')"
+                >
+                  Demo123!
+                </div>
+              </div>
               <div v-if="authStore.showDemoCredentials" class="text-xs text-gray-500 text-center mt-2">
-                Click on the fields to copy the demo credentials
+                Click to copy the credentials
               </div>
             </div>
 
@@ -144,7 +160,7 @@
               @click="authStore.toggleAuthMode()" 
               class="text-blue-600 hover:text-blue-800 text-sm font-medium transition-colors"
             >
-              Already have an account? Sign in
+              Flip back to <span class="font-medium">Sign In</span>
             </button>
           </div>
 
