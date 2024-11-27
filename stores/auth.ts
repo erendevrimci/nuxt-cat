@@ -1,6 +1,6 @@
 // stores/auth.ts
 import { defineStore } from 'pinia'
-import { AuthRepository } from '~/repositories/auth'
+import { AuthRepository } from '../repositories/auth'
 
 export const useAuthStore = defineStore('auth', {
   state: () => ({
