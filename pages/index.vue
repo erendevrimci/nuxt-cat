@@ -395,4 +395,61 @@ definePageMeta({
   animation: inkDiffuseThird 2.5s ease-out infinite;
   animation-delay: 1.6s;
 }
+
+/* Decorative shapes */
+.decorative-shape {
+  @apply absolute w-16 h-16 opacity-50;
+  animation: moveAround 20s linear infinite, morphShape 8s ease-in-out infinite;
+}
+
+.shape-1 {
+  background: linear-gradient(45deg, #93c5fd, #818cf8);
+  animation-delay: 0s, 0s;
+  clip-path: circle(50% at 50% 50%);
+}
+
+.shape-2 {
+  background: linear-gradient(45deg, #c084fc, #f472b6);
+  animation-delay: -6.67s, -2.67s;
+  clip-path: circle(50% at 50% 50%);
+}
+
+.shape-3 {
+  background: linear-gradient(45deg, #34d399, #60a5fa);
+  animation-delay: -13.33s, -5.33s;
+  clip-path: circle(50% at 50% 50%);
+}
+
+@keyframes moveAround {
+  0% {
+    transform: translate(calc(-50% + 300px), calc(-50% + 150px)) rotate(0deg);
+  }
+  25% {
+    transform: translate(calc(-50% - 300px), calc(-50% + 150px)) rotate(90deg);
+  }
+  50% {
+    transform: translate(calc(-50% - 300px), calc(-50% - 150px)) rotate(180deg);
+  }
+  75% {
+    transform: translate(calc(-50% + 300px), calc(-50% - 150px)) rotate(270deg);
+  }
+  100% {
+    transform: translate(calc(-50% + 300px), calc(-50% + 150px)) rotate(360deg);
+  }
+}
+
+@keyframes morphShape {
+  0%, 100% {
+    clip-path: circle(50% at 50% 50%);
+  }
+  25% {
+    clip-path: polygon(50% 0%, 100% 50%, 50% 100%, 0% 50%);
+  }
+  50% {
+    clip-path: polygon(25% 0%, 75% 0%, 100% 50%, 75% 100%, 25% 100%, 0% 50%);
+  }
+  75% {
+    clip-path: polygon(50% 0%, 100% 38%, 82% 100%, 18% 100%, 0% 38%);
+  }
+}
 </style>
