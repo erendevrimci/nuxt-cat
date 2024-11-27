@@ -1,17 +1,5 @@
 <template>
   <div class="min-h-screen flex items-center justify-center bg-white p-4 relative">
-    <!-- Floating Messages -->
-    <div 
-      v-if="authStore.signUpMessage" 
-      class="absolute top-1/4 left-1/2 transform -translate-x-1/2 -translate-y-1/2 z-50"
-    >
-      <p 
-        class="text-3xl font-light text-gray-800 whitespace-nowrap typewriter"
-        :class="{ 'fast-typewriter': authStore.showDemoCredentials }"
-      >
-        {{ authStore.signUpMessage }}
-      </p>
-    </div>
     <!-- Welcome Section -->
     <div v-if="!showAuthCard" class="text-center space-y-6">
       <h1 class="text-4xl font-light text-gray-800">Welcome to KittyMizer</h1>
@@ -252,42 +240,6 @@ definePageMeta({
 </script>
 
 <style scoped>
-@keyframes typewriter {
-  from { width: 0; }
-  to { width: 100%; }
-}
-
-@keyframes fadeOut {
-  from { opacity: 1; }
-  to { opacity: 0; }
-}
-
-.typewriter {
-  overflow: hidden;
-  white-space: nowrap;
-  animation:
-    typewriter 2s steps(40, end);
-  transition:
-    fade-out 1s ease-out 3s forwards;
-}
-
-.fast-typewriter {
-  animation: 
-    typewriter 0.7s steps(30, end);
-  transition:
-    fade-out 1s ease-out 3s forwards;
-    
-    
-}
-
-/* Only apply fadeOut to the first message during signup */
-.typewriter:not(.fast-typewriter) {
-  animation: 
-    typewriter 2s steps(40),
-    fadeOut 1s ease-out 3s forwards;
-  transition:
-    fade-out 2s ease-out 2s forwards;
-}
 .perspective {
   perspective: 1000px;
 }
