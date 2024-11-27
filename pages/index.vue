@@ -265,13 +265,18 @@ definePageMeta({
 .typewriter {
   overflow: hidden;
   white-space: nowrap;
-  animation: 
+  animation:
     typewriter 2s steps(40, end);
+  transition:
+    fade-out 1s ease-out 3s forwards;
 }
 
 .fast-typewriter {
   animation: 
     typewriter 0.7s steps(30, end);
+  transition:
+    fade-out 1s ease-out 3s forwards;
+    
     
 }
 
@@ -280,6 +285,8 @@ definePageMeta({
   animation: 
     typewriter 2s steps(40),
     fadeOut 1s ease-out 3s forwards;
+  transition:
+    fade-out 2s ease-out 2s forwards;
 }
 .perspective {
   perspective: 1000px;
@@ -399,22 +406,24 @@ definePageMeta({
 /* Decorative shapes */
 .decorative-shape {
   position: absolute;
-  width: 4rem;
-  height: 4rem;
+  top: 0;
+  left: 0;
+  width: 1rem;
+  height: 1rem;
   opacity: 0.5;
-  animation: moveAround 20s linear infinite, morphShape 8s ease-in-out infinite;
+  animation: moveAround 35s linear infinite, morphShape 9s ease-in-out infinite;
 }
 
 .shape-1 {
   background: linear-gradient(45deg, #93c5fd, #818cf8);
   animation-delay: 0s, 0s;
-  clip-path: circle(50% at 50% 50%);
+  clip-path: circle(100%);
 }
 
 .shape-2 {
   background: linear-gradient(45deg, #c084fc, #f472b6);
   animation-delay: -6.67s, -2.67s;
-  clip-path: circle(50% at 50% 50%);
+  clip-path: circle(100% at 50% 50%);
 }
 
 .shape-3 {
@@ -425,19 +434,19 @@ definePageMeta({
 
 @keyframes moveAround {
   0% {
-    transform: translate(calc(100% - 2rem), -2rem) rotate(0deg);
+    transform: translate(calc(-50%), calc(-50% + 150px)) rotate(0deg);
   }
   25% {
-    transform: translate(-2rem, -2rem) rotate(90deg);
+    transform: translate(calc(-50%), calc(-50% + 150px)) rotate(90deg);
   }
   50% {
-    transform: translate(-2rem, calc(100% - 2rem)) rotate(180deg);
+    transform: translate(calc(-50%), calc(-50% - 150px)) rotate(180deg);
   }
   75% {
-    transform: translate(calc(100% - 2rem), calc(100% - 2rem)) rotate(270deg);
+    transform: translate(calc(-50%), calc(-50% - 150px)) rotate(270deg);
   }
   100% {
-    transform: translate(calc(100% - 2rem), -2rem) rotate(360deg);
+    transform: translate(calc(-50%), calc(-50% + 150px)) rotate(360deg);
   }
 }
 
