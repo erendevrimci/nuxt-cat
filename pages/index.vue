@@ -328,7 +328,7 @@ definePageMeta({
 
 .button-click {
   &:active {
-    filter: saturate(0.1);
+    filter: saturate(0);
     transition: filter 2s ease-out;
   }
 }
