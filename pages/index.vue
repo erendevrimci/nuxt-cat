@@ -239,13 +239,19 @@ definePageMeta({
   overflow: hidden;
   white-space: nowrap;
   animation: 
-    typewriter 2s steps(40, end),
-    fadeOut 1s ease-out 5s forwards;
+    typewriter 2s steps(40, end);
 }
 
 .fast-typewriter {
   animation: 
     typewriter 0.7s steps(40, end);
+}
+
+/* Only apply fadeOut to the first message during signup */
+.typewriter:not(.fast-typewriter) {
+  animation: 
+    typewriter 2s steps(40, end),
+    fadeOut 1s ease-out 5s forwards;
 }
 .perspective {
   perspective: 1000px;
