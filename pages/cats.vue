@@ -57,13 +57,15 @@
 </template>
 
 <script setup lang="ts">
-import { useRouter, definePageMeta } from 'nuxt/app'
-import { useAuth } from '../composables/useAuth'
-import { useCatStore } from '../stores/cat'
 
 definePageMeta({
   middleware: ['auth']
 })
+import { useRouter } from 'nuxt/app'
+import { useAuth } from '../composables/useAuth'
+import { useCatStore } from '../stores/cat'
+
+
 
 const router = useRouter()
 const { signOut } = useAuth()
