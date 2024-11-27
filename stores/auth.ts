@@ -37,8 +37,6 @@ export const useAuthStore = defineStore('auth', {
       this.authError = null
       this.signUpMessage = ""
       
-      // Start first message after 2 seconds
-      await new Promise(resolve => setTimeout(resolve, 2000))
       this.signUpMessage = "Seems like cutie kitties are in need of a quick sign up! 🐱"
       
       if (username && password) {
