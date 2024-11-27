@@ -85,26 +85,38 @@
           class="absolute inset-0 bg-white shadow-lg rounded-xl p-6 backface-hidden rotate-y-180"
           :class="{ 'invisible': !authStore.isSignUpMode }"
         >
-          <h2 class="text-2xl font-semibold mb-6 text-center text-gray-800">
-            Sign Up
-          </h2>
+          <div class="space-y-4 text-center">
+            <h2 class="text-2xl font-semibold text-gray-800">
+              Sign Up
+            </h2>
+            <p class="text-gray-600 text-sm italic animate-fade-in">
+              {{ authStore.signUpMessage }}
+            </p>
+          </div>
           
           <form @submit.prevent="handleSubmit" class="space-y-4">
             <div class="space-y-2">
               <input 
                 v-model="username" 
                 type="text" 
-                placeholder="Username" 
+                :placeholder="authStore.showDemoCredentials ? 'demo' : 'Username'"
                 required 
                 class="w-full px-4 py-3 border border-gray-200 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 transition-all"
+                :class="{ 'cursor-pointer': authStore.showDemoCredentials }"
+                @click="authStore.showDemoCredentials && copyToClipboard('demo')"
               />
               <input 
                 v-model="password" 
                 type="password" 
-                placeholder="Password" 
+                :placeholder="authStore.showDemoCredentials ? 'Demo123!' : 'Password'"
                 required 
                 class="w-full px-4 py-3 border border-gray-200 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 transition-all"
+                :class="{ 'cursor-pointer': authStore.showDemoCredentials }"
+                @click="authStore.showDemoCredentials && copyToClipboard('Demo123!')"
               />
+              <div v-if="authStore.showDemoCredentials" class="text-xs text-gray-500 text-center mt-2">
+                Click on the fields to copy the demo credentials
+              </div>
             </div>
 
             <div v-if="authStore.authError" 
@@ -114,9 +126,9 @@
 
             <button 
               type="submit" 
-              class="w-full bg-blue-600 text-white py-3 rounded-lg hover:bg-blue-700 transform hover:scale-[1.02] transition-all duration-200"
+              class="px-6 py-2 bg-blue-600 text-white rounded-lg hover:bg-blue-700 transition-all duration-200 text-sm"
             >
-              Sign Up
+              Done!
             </button>
           </form>
 
@@ -148,6 +160,14 @@ const password = ref('')
 const showAuthCard = ref(false)
 const authStore = useAuthStore()
 const router = useRouter()
+
+const copyToClipboard = async (text: string) => {
+  try {
+    await navigator.clipboard.writeText(text)
+  } catch (err) {
+    console.error('Failed to copy:', err)
+  }
+}
 
 const handleSubmit = async () => {
   try {
@@ -205,5 +225,14 @@ definePageMeta({
 
 .hover\:glow-purple-sm:hover {
   filter: drop-shadow(0 0 0.5rem theme('colors.purple.300'));
+}
+
+@keyframes fadeIn {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+
+.animate-fade-in {
+  animation: fadeIn 0.5s ease-out;
 }
 </style>

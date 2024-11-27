@@ -7,7 +7,9 @@ export const useAuthStore = defineStore('auth', {
     user: null as { username: string } | null,
     isAuthenticated: false,
     authError: null as string | null,
-    isSignUpMode: false
+    isSignUpMode: false,
+    signUpMessage: '',
+    showDemoCredentials: false
   }),
   actions: {
     async login(username: string, password: string) {
@@ -33,15 +35,13 @@ export const useAuthStore = defineStore('auth', {
     },
     async signup(username: string, password: string) {
       this.authError = null
-      // Simulated signup - in reality, this would call the backend
+      this.signUpMessage = "Seems like cutie kitties are in need of a quick sign up! 🐱"
+      
+      await new Promise(resolve => setTimeout(resolve, 1000))
+      
       if (username && password) {
-        // Simulate successful signup
-        this.authError = null
-        this.isSignUpMode = false
-        // Show demo credentials message after "successful" signup
-        setTimeout(() => {
-          this.authError = 'Account created! For this demo, please use demo/Demo123! to sign in.'
-        }, 500) // Small delay to allow animation to complete
+        this.showDemoCredentials = true
+        this.signUpMessage = "Oh, forgot to tell you, this is just a test! Please use the credentials below to sign in 😊"
         return true
       }
       return false
