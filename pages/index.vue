@@ -160,28 +160,31 @@
               {{ authStore.authError }}
             </div>
 
-            <button 
-              type="submit" 
-              class="px-6 py-2 bg-blue-600 text-white rounded-lg hover:bg-blue-700 transition-all duration-200 text-sm"
-            >
-              Done!
-            </button>
-          </form>
-
-          <div class="mt-6 text-center h-8 flex items-center justify-center">
-            <div class="text-sm">
-              <span class="text-gray-600">Flip back to</span>
+            <div class="flex space-x-4">
+              <button 
+                type="submit" 
+                class="flex-1 px-6 py-2 bg-blue-600 text-white rounded-lg hover:bg-blue-700 transition-all duration-200 text-sm"
+              >
+                Done!
+              </button>
+              
+              <button 
+                v-if="authStore.showDemoCredentials"
+                @click="copyToClipboard('demo\nDemo123!')"
+                class="flex-1 px-6 py-2 bg-gray-100 text-gray-700 rounded-lg hover:bg-gray-200 transition-all duration-200 text-sm"
+              >
+                Copy Credentials
+              </button>
+              
               <button 
                 @click="authStore.toggleAuthMode()" 
-                class="ml-1 text-blue-600 hover:text-blue-800 font-medium transition-all duration-300
-                       hover:glow-blue-sm relative group inline-block"
+                class="flex-1 px-6 py-2 bg-gray-50 text-blue-600 rounded-lg hover:bg-gray-100 transition-all duration-200 text-sm
+                       hover:glow-blue-sm"
               >
                 Sign In
-                <span class="absolute bottom-0 left-0 w-full h-0.5 bg-blue-600 scale-x-0 
-                           group-hover:scale-x-100 transition-transform origin-left duration-300"></span>
               </button>
             </div>
-          </div>
+          </form>
 
           <!-- Decorative elements -->
           <div class="absolute top-0 right-0 w-20 h-20 bg-blue-100 rounded-full -mr-10 -mt-10 opacity-50"></div>
