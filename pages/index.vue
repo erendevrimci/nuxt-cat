@@ -139,7 +139,7 @@
                 </div>
               </div>
               <div v-if="authStore.showDemoCredentials" class="text-xs text-gray-500 text-center mt-2">
-                Click to copy the credentials
+                Oh, yeah, just a demo! But go on, copy it!
               </div>
             </div>
 
@@ -161,18 +161,21 @@
               <button 
                 v-else
                 @click="copyToClipboard('demo\nDemo123!')"
-                class="flex-1 px-6 py-2 text-white rounded-lg transition-all duration-500 text-sm relative overflow-hidden button-click"
+                class="flex-1 px-6 py-2 text- rounded-lg transition-all duration-500 text-sm relative overflow-hidden button-click"
               >
                 <span class="relative z-10 opacity-0 animate-fade-in-slow">Copy Credentials</span>
-                <div class="absolute inset-0 bg-gradient-to-r from-blue-600 via-purple-600 to-blue-100 transition-colors duration-500"></div>
+                <div class="absolute inset-0 bg-gradient-to-r from-blue-600 via-purple-400 to-blue-900 transition-colors duration-500 
+                            hover:glow-blue-xl"
+                >
+              </div>
               </button>
               
               <button 
                 @click="authStore.toggleAuthMode()" 
-                class="flex-1 px-6 py-2 bg-gray-50 text-blue-600 rounded-lg hover:bg-gray-100 transition-all duration-200 text-sm
+                class="flex-1 px-6 py-2 bg-gray-90 text-blue-900 rounded-lg hover:bg-gray-100 transition-all duration-200 text-sm
                        hover:glow-blue-sm"
               >   
-            <p class="text-sm text-gray-600"> Flip back to</p>
+            <p class="text-sm text-gray-800"> Flip back to</p>
                 Sign In
               </button>
             </div>
