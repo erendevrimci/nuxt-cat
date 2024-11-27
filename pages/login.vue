@@ -148,7 +148,6 @@
 import { ref, onMounted } from 'vue'
 import { useAuthStore } from '../stores/auth'
 import { useRouter } from 'vue-router'
-import { definePageMeta } from 'nuxt/app'
 
 const username = ref('')
 const password = ref('')
@@ -183,9 +182,6 @@ onMounted(() => {
 })
 
 // Prevent authenticated users from accessing login page
-definePageMeta({
-  middleware: ['guest']
-})
 </script>
 
 <style scoped>
