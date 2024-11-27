@@ -71,12 +71,15 @@
               class="w-full relative py-2 rounded-lg text-sm font-medium overflow-hidden group"
             >
               <span class="relative z-10 text-white">
-                {{ authStore.isSignUpMode ? 'Sign Up' : 'Ready to Meet Some Purrfect Friends? 🐱' }}
+                {{ authStore.isSignUpMode ? 'Sign Up' : 'Time for Some Kitty Magic! 🎩✨' }}
               </span>
-              <div class="absolute inset-0 bg-gradient-to-r from-violet-600 to-indigo-600"></div>
-              <div class="absolute inset-0 opacity-0 group-hover:opacity-100 transition-opacity duration-700 
-                          bg-[radial-gradient(circle,rgba(104,58,183,0.8)_0%,rgba(104,58,183,0)_70%)] 
-                          animate-ink-diffuse"></div>
+              <div class="absolute inset-0 bg-black"></div>
+              <div class="absolute inset-0 opacity-0 group-hover:opacity-100 transition-opacity duration-300">
+                <div class="absolute inset-0 bg-[radial-gradient(circle,rgba(147,51,234,0.7)_0%,transparent_70%)] 
+                            animate-ink-diffuse"></div>
+                <div class="absolute inset-0 bg-[radial-gradient(circle,rgba(168,85,247,0.7)_0%,transparent_70%)] 
+                            animate-ink-diffuse-delayed"></div>
+              </div>
             </button>
           </form>
 
@@ -300,19 +303,38 @@ definePageMeta({
 
 @keyframes inkDiffuse {
   0% {
-    transform: scale(0.95);
+    transform: scale(0.3);
     opacity: 0;
   }
   50% {
-    opacity: 0.5;
+    opacity: 0.6;
   }
   100% {
-    transform: scale(2);
+    transform: scale(2.5);
+    opacity: 0;
+  }
+}
+
+@keyframes inkDiffuseDelayed {
+  0% {
+    transform: scale(0.3);
+    opacity: 0;
+  }
+  50% {
+    opacity: 0.6;
+  }
+  100% {
+    transform: scale(2.5);
     opacity: 0;
   }
 }
 
 .animate-ink-diffuse {
-  animation: inkDiffuse 1.5s ease-out infinite;
+  animation: inkDiffuse 2s ease-out infinite;
+}
+
+.animate-ink-diffuse-delayed {
+  animation: inkDiffuseDelayed 2s ease-out infinite;
+  animation-delay: 1s;
 }
 </style>
