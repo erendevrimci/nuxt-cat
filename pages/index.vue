@@ -76,7 +76,7 @@
 
           <div class="mt-6 text-center">
             <p class="text-sm text-gray-600">
-              Need an account? 
+              Psst! First time here? 
               <button 
                 @click="authStore.toggleAuthMode()" 
                 class="text-purple-600 hover:text-purple-800 font-medium transition-all duration-300
