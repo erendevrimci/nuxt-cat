@@ -57,10 +57,6 @@
 </template>
 
 <script setup lang="ts">
-
-definePageMeta({
-  middleware: ['auth']
-})
 import { useRouter } from 'nuxt/app'
 import { useAuth } from '../composables/useAuth'
 import { useCatStore } from '../stores/cat'
