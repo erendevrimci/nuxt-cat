@@ -164,17 +164,19 @@
               <button 
                 v-if="!authStore.showDemoCredentials"
                 type="submit" 
-                class="flex-1 px-6 py-2 bg-blue-600 text-white rounded-lg hover:bg-blue-700 transition-all duration-200 text-sm"
+                class="flex-1 px-6 py-2 text-white rounded-lg transition-all duration-500 text-sm relative overflow-hidden"
               >
-                Done!
+                <span class="relative z-10">Done!</span>
+                <div class="absolute inset-0 bg-gradient-to-r from-blue-600 via-purple-600 to-blue-600 bg-size-200 animate-gradient-x"></div>
               </button>
               
               <button 
                 v-else
                 @click="copyToClipboard('demo\nDemo123!')"
-                class="flex-1 px-6 py-2 bg-blue-600 text-white rounded-lg hover:bg-blue-700 transition-all duration-200 text-sm"
+                class="flex-1 px-6 py-2 text-white rounded-lg transition-all duration-500 text-sm relative overflow-hidden"
               >
-                Copy Credentials
+                <span class="relative z-10">Copy Credentials</span>
+                <div class="absolute inset-0 bg-gradient-to-r from-blue-600 via-purple-600 to-blue-600 bg-size-200 animate-gradient-x"></div>
               </button>
               
               <button 
@@ -300,6 +302,10 @@ definePageMeta({
 
 .animate-gradient-x {
   animation: gradient-x 3s linear infinite;
+  background-size: 200% 100%;
+}
+
+.bg-size-200 {
   background-size: 200% 100%;
 }
 
