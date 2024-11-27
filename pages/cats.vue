@@ -1,5 +1,19 @@
 <template>
-  <div class="min-h-screen bg-gradient-to-br from-blue-50 to-blue-100 flex items-center justify-center p-4">
+  <div class="min-h-screen bg-gradient-to-br from-blue-50 to-blue-100 relative">
+    <!-- Navigation Icons -->
+    <div class="absolute top-4 right-4 flex items-center space-x-4">
+      <NuxtLink to="/profile" class="text-blue-600 hover:text-blue-800 transition-colors">
+        <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M16 7a4 4 0 11-8 0 4 4 0 018 0zM12 14a7 7 0 00-7 7h14a7 7 0 00-7-7z" />
+        </svg>
+      </NuxtLink>
+      <button @click="handleLogout" class="text-blue-600 hover:text-blue-800 transition-colors">
+        <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 16l4-4m0 0l-4-4m4 4H7m6 4v1a3 3 0 01-3 3H6a3 3 0 01-3-3V7a3 3 0 013-3h4a3 3 0 013 3v1" />
+        </svg>
+      </button>
+    </div>
+    <div class="flex items-center justify-center p-4 min-h-screen">
     <div class="w-full max-w-md bg-white shadow-2xl rounded-2xl p-8 space-y-6 border border-blue-100">
       <div class="text-center">
         <h1 class="text-3xl font-extrabold text-blue-900 mb-4">Kitty Randomizer</h1>
@@ -47,7 +61,18 @@ definePageMeta({
   middleware: ['auth']
 })
 
+const router = useRouter()
+const { signOut } = useAuth()
 const catStore = useCatStore()
+
+const handleLogout = async () => {
+  try {
+    await signOut()
+    router.push('/login')
+  } catch (error) {
+    console.error('Logout error:', error)
+  }
+}
 
 const fetchCat = async () => {
   try {
