@@ -35,8 +35,13 @@ export const useAuthStore = defineStore('auth', {
       this.authError = null
       // Simulated signup - in reality, this would call the backend
       if (username && password) {
-        this.authError = 'This is just a test application. Please use demo/Demo123! to sign in.'
+        // Simulate successful signup
+        this.authError = null
         this.isSignUpMode = false
+        // Show demo credentials message after "successful" signup
+        setTimeout(() => {
+          this.authError = 'Account created! For this demo, please use demo/Demo123! to sign in.'
+        }, 500) // Small delay to allow animation to complete
         return true
       }
       return false
