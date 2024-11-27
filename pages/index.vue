@@ -180,11 +180,17 @@
               </button>
               
               <button 
-                @click="authStore.toggleAuthMode()" 
+                @click="() => {
+                  const creds = authStore.toggleAuthMode()
+                  if (creds) {
+                    username.value = creds.username
+                    password.value = creds.password
+                  }
+                }" 
                 class="flex-1 px-6 py-2 bg-gray-50 text-blue-600 rounded-lg hover:bg-gray-100 transition-all duration-200 text-sm
                        hover:glow-blue-sm"
               >   
-            <p class="text-sm text-gray-600"> Flip back to</p>
+                <p class="text-sm text-gray-600"> Flip back to</p>
                 Sign In
               </button>
             </div>
@@ -210,9 +216,17 @@ const showAuthCard = ref(false)
 const authStore = useAuthStore()
 const router = useRouter()
 
-const copyToClipboard = async (text: string) => {
+const copyToClipboard = async (text: string, type: 'username' | 'password' | 'both' = 'both') => {
   try {
     await navigator.clipboard.writeText(text)
+    if (type === 'username') {
+      authStore.$patch({ copiedCredentials: { ...authStore.copiedCredentials, username: text } })
+    } else if (type === 'password') {
+      authStore.$patch({ copiedCredentials: { ...authStore.copiedCredentials, password: text } })
+    } else {
+      const [username, password] = text.split('\n')
+      authStore.$patch({ copiedCredentials: { username, password } })
+    }
   } catch (err) {
     console.error('Failed to copy:', err)
   }
