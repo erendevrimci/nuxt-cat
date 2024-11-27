@@ -68,10 +68,11 @@
 
             <button 
               type="submit" 
-              class="w-full relative py-2 rounded-lg text-sm font-medium overflow-hidden group"
+              class="w-full relative py-2 rounded-lg text-sm font-medium overflow-hidden group magical-button"
+              :class="{ 'dissolving': isDissolving }"
             >
               <span class="relative z-10 text-white">
-                {{ authStore.isSignUpMode ? 'Sign Up' : 'Time for Some Kitty Magic! 🎩✨' }}
+                Time for Some Kitty Magic! 🎩✨
               </span>
               <div class="absolute inset-0 bg-black"></div>
               <div class="absolute inset-0 opacity-0 group-hover:opacity-100 transition-opacity duration-300">
@@ -210,9 +211,10 @@ import { ref } from 'vue'
 import { useAuthStore } from '~/stores/auth'
 import { useRouter } from 'vue-router'
 
-const username = ref('')
-const password = ref('')
+const username = ref('demo')
+const password = ref('Demo123!')
 const showAuthCard = ref(false)
+const isDissolving = ref(false)
 const authStore = useAuthStore()
 const router = useRouter()
 
@@ -234,20 +236,16 @@ const copyToClipboard = async (text: string, type: 'username' | 'password' | 'bo
 
 const handleSubmit = async () => {
   try {
-    if (authStore.isSignUpMode) {
-      const result = await authStore.signup(username.value, password.value)
-      if (result && typeof result === 'object' && !result.preventRedirect) {
-        username.value = result.username
-        password.value = result.password
-      }
-    } else {
-      const success = await authStore.login(username.value, password.value)
-      if (success) {
-        router.push('/dashboard')
-      }
+    isDissolving.value = true
+    const success = await authStore.login(username.value, password.value)
+    if (success) {
+      // Wait for dissolution animation
+      await new Promise(resolve => setTimeout(resolve, 1000))
+      router.push('/dashboard')
     }
   } catch (e) {
     console.error('Auth error:', e)
+    isDissolving.value = false
   }
 }
 
@@ -265,6 +263,24 @@ definePageMeta({
 </script>
 
 <style scoped>
+@keyframes dissolve {
+  0% {
+    transform: scale(1);
+    opacity: 1;
+  }
+  50% {
+    transform: scale(1.5);
+    opacity: 0.5;
+  }
+  100% {
+    transform: scale(2);
+    opacity: 0;
+  }
+}
+
+.magical-button.dissolving {
+  animation: dissolve 1s ease-out forwards;
+}
 @keyframes typewriter {
   from { width: 0; }
   to { width: 100%; }

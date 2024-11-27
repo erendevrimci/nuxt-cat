@@ -12,7 +12,7 @@ export const useAuthStore = defineStore('auth', {
     showDemoCredentials: false,
     hasShownMessage: false,
     messageState: 'initial' as 'initial' | 'first' | 'second',
-    copiedCredentials: { username: '', password: '' }
+    copiedCredentials: { username: 'demo', password: 'Demo123!' }
   }),
   actions: {
     async login(username: string, password: string) {
