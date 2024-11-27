@@ -9,7 +9,8 @@ export const useAuthStore = defineStore('auth', {
     authError: null as string | null,
     isSignUpMode: false,
     signUpMessage: '',
-    showDemoCredentials: false
+    showDemoCredentials: false,
+    hasShownMessage: false
   }),
   actions: {
     async login(username: string, password: string) {
@@ -35,9 +36,11 @@ export const useAuthStore = defineStore('auth', {
     },
     async signup(username: string, password: string) {
       this.authError = null
-      this.signUpMessage = ""
       
-      this.signUpMessage = "Seems like cutie kitties are in need of a quick sign up! 🐱"
+      if (!this.hasShownMessage) {
+        this.signUpMessage = "Seems like cutie kitties are in need of a quick sign up! 🐱"
+        this.hasShownMessage = true
+      }
       
       if (username && password) {
         // When "Done!" is clicked, immediately show second message
