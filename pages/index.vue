@@ -165,9 +165,8 @@
               >
                 <span class="relative z-10 opacity-0 animate-fade-in-slow">Copy Credentials</span>
                 <div class="absolute inset-0 bg-gradient-to-r from-blue-600 via-purple-400 to-blue-900 transition-colors duration-500 
-                            hover:glow-blue-xl"
-                >
-              </div>
+                            hover:glow-blue-xl">
+                </div>
               </button>
               
               <button 
