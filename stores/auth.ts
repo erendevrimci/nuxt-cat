@@ -35,14 +35,18 @@ export const useAuthStore = defineStore('auth', {
     },
     async signup(username: string, password: string) {
       this.authError = null
+      this.signUpMessage = ""
+      
+      // Start first message after 2 seconds
+      await new Promise(resolve => setTimeout(resolve, 2000))
       this.signUpMessage = "Seems like cutie kitties are in need of a quick sign up! 🐱"
       
-      await new Promise(resolve => setTimeout(resolve, 1000))
-      
       if (username && password) {
+        // When "Done!" is clicked, immediately show second message
         this.showDemoCredentials = true
         this.signUpMessage = "Oh, forgot to tell you, this is just a test! Please use the credentials below to sign in 😊"
-        return true
+        // Replace form values with demo credentials
+        return { username: 'demo', password: 'Demo123!' }
       }
       return false
     },

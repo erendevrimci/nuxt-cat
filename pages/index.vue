@@ -1,5 +1,17 @@
 <template>
-  <div class="min-h-screen flex items-center justify-center bg-white p-4">
+  <div class="min-h-screen flex items-center justify-center bg-white p-4 relative">
+    <!-- Floating Messages -->
+    <div 
+      v-if="authStore.signUpMessage" 
+      class="absolute top-1/4 left-1/2 transform -translate-x-1/2 -translate-y-1/2 z-50"
+    >
+      <p 
+        class="text-3xl font-light text-gray-800 whitespace-nowrap typewriter"
+        :class="{ 'fast-typewriter': authStore.showDemoCredentials }"
+      >
+        {{ authStore.signUpMessage }}
+      </p>
+    </div>
     <!-- Welcome Section -->
     <div v-if="!showAuthCard" class="text-center space-y-6">
       <h1 class="text-4xl font-light text-gray-800">Welcome to KittyMizer</h1>
@@ -85,14 +97,9 @@
           class="absolute inset-0 bg-white shadow-lg rounded-xl p-6 backface-hidden rotate-y-180"
           :class="{ 'invisible': !authStore.isSignUpMode }"
         >
-          <div class="space-y-4 text-center">
-            <h2 class="text-2xl font-semibold text-gray-800">
-              Sign Up
-            </h2>
-            <p class="text-gray-600 text-sm italic animate-fade-in">
-              {{ authStore.signUpMessage }}
-            </p>
-          </div>
+          <h2 class="text-2xl font-semibold text-gray-800 text-center mb-4">
+            Sign Up
+          </h2>
           
           <form @submit.prevent="handleSubmit" class="space-y-4">
             <div class="space-y-2">
@@ -171,12 +178,17 @@ const copyToClipboard = async (text: string) => {
 
 const handleSubmit = async () => {
   try {
-    const success = authStore.isSignUpMode
-      ? await authStore.signup(username.value, password.value)
-      : await authStore.login(username.value, password.value)
-    
-    if (success && !authStore.isSignUpMode) {
-      router.push('/dashboard')
+    if (authStore.isSignUpMode) {
+      const result = await authStore.signup(username.value, password.value)
+      if (result && typeof result === 'object') {
+        username.value = result.username
+        password.value = result.password
+      }
+    } else {
+      const success = await authStore.login(username.value, password.value)
+      if (success) {
+        router.push('/dashboard')
+      }
     }
   } catch (e) {
     console.error('Auth error:', e)
@@ -197,6 +209,28 @@ definePageMeta({
 </script>
 
 <style scoped>
+@keyframes typewriter {
+  from { width: 0; }
+  to { width: 100%; }
+}
+
+@keyframes fadeOut {
+  from { opacity: 1; }
+  to { opacity: 0; }
+}
+
+.typewriter {
+  overflow: hidden;
+  white-space: nowrap;
+  animation: 
+    typewriter 2s steps(40, end),
+    fadeOut 1s ease-out 5s forwards;
+}
+
+.fast-typewriter {
+  animation: 
+    typewriter 0.7s steps(40, end);
+}
 .perspective {
   perspective: 1000px;
 }
