@@ -294,6 +294,14 @@ definePageMeta({
   filter: drop-shadow(0 0 0.5rem theme('colors.purple.300'));
 }
 
+.hover\:glow-blue-sm:hover {
+  filter: drop-shadow(0 0 0.5rem theme('colors.blue.300'));
+}
+
+.group:hover .group-hover\:scale-x-100 {
+  transform: scaleX(1);
+}
+
 @keyframes fadeIn {
   from { opacity: 0; }
   to { opacity: 1; }

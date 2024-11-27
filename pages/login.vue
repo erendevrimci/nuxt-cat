@@ -121,12 +121,18 @@
           </form>
 
           <div class="mt-6 text-center">
-            <button 
-              @click="authStore.toggleAuthMode()" 
-              class="text-blue-600 hover:text-blue-800 text-sm font-medium transition-colors"
-            >
-              Already have an account? Sign in
-            </button>
+            <div class="text-sm">
+              <span class="text-gray-600">Already have an account?</span>
+              <button 
+                @click="authStore.toggleAuthMode()" 
+                class="ml-1 text-blue-600 hover:text-blue-800 font-medium transition-all duration-300
+                       hover:glow-blue-sm relative group"
+              >
+                Sign in
+                <span class="absolute bottom-0 left-0 w-full h-0.5 bg-blue-600 scale-x-0 
+                           group-hover:scale-x-100 transition-transform origin-left duration-300"></span>
+              </button>
+            </div>
           </div>
 
           <!-- Decorative elements -->
