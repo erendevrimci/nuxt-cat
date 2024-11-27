@@ -38,12 +38,10 @@ const password = ref('')
 const authStore = useAuthStore()
 const router = useRouter()
 
-const handleLogin = () => {
-  const success = authStore.login(username.value, password.value)
+const handleLogin = async () => {
+  const success = await authStore.login(username.value, password.value)
   if (success) {
     router.push('/dashboard')
-  } else {
-    alert('Invalid login credentials')
   }
 }
 
