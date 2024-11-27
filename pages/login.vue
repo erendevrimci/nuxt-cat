@@ -148,7 +148,7 @@
 import { ref, onMounted } from 'vue'
 import { useAuthStore } from '../stores/auth'
 import { useRouter } from 'vue-router'
-import { definePageMeta } from '#imports'
+import { definePageMeta } from 'nuxt'
 
 const username = ref('')
 const password = ref('')

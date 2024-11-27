@@ -1,6 +1,6 @@
   // plugins/axios.ts
 import axios from 'axios'
-import { defineNuxtPlugin, useRuntimeConfig } from '#app'
+import { defineNuxtPlugin, useRuntimeConfig } from 'nuxt/app'
 
 export default defineNuxtPlugin((nuxtApp) => {
   const config = useRuntimeConfig()
