@@ -711,7 +711,7 @@ const _inlineRuntimeConfig = {
     }
   },
   "public": {
-    "catApiKey": "live_gfLoYIt4WXhkWf3YP1dtEbIuWO6WnxvM5thTLMV9BoMk14kEi3dfnjPUxm6nrN12"
+    "catApiKey": ""
   }
 };
 const envOptions = {
